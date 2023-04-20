@@ -1,9 +1,9 @@
 import './css/styles.css';
-import { fetchCountries } from './fetchCountries';
+import { fetchCountries } from './fetchCountries.js';
 import Notiflix from 'notiflix';
 
 const API_URL = 'https://restcountries.com/v3.1/name/';
-const FILTER = `?fields=name,capital,population,flags,languages`;
+const PARAMS = `?fields=name,capital,population,flags,languages`;
 
 const DEBOUNCE_DELAY = 300;
 
@@ -16,22 +16,19 @@ const clearCountry() => {
     infoEl.innerHTML = ""
 }
 
-// const addSpace = number => number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
 
 inputEl.addEventListener(  
     'input', debounce(event => {
   if (event.target.value.trim() !== '') {
-    fetchCountries(`${API_URL}${event.target.value.trim()}${FILTER}`)
+    fetchCountries(`${API_URL}${event.target.value.trim()}${PARAMS}`)
       .then(countriesData => renderCountry(countriesData))
       .catch(error => console.log(error));
   } else {
     clearCountry();
   }
-//   console.log(e.target.value);
 }, DEBOUNCE_DELAY))
 
 function renderCountry(countriesData) {
-    // console.log(countriesData.length);
     if (countriesData.length > 10) {
       Notiflix.Notify.info(
         'Too many matches found. Please enter a more specific name.'
@@ -52,8 +49,6 @@ function renderCountry(countriesData) {
     }
   
     if (countriesData.length > 1 && countriesData.length <= 10) {
-      // console.log(countriesData);
-      // console.log(...countriesData);
       clearFields();
       const markup = countriesData
         .map(country => {
