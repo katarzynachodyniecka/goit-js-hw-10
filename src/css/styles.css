@@ -1,5 +1,7 @@
 * {
   box-sizing: border-box;
+  text-decoration: none;
+  color: black;
 }
 
 body {
@@ -17,4 +19,46 @@ body {
   padding: 8px;
   max-width: 320px;
   margin-bottom: 16px;
+}
+
+.country-list {
+  list-style: none;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.country-list__item {
+  cursor: pointer;
+  width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  gap: 10px;
+  margin: 10px;
+  padding: 10px;
+  transition-duration: 500ms;
+}
+
+.country-list__img {
+  border: solid 1px black;
+}
+.country-info__img {
+  border: solid 1px black;
+}
+.country-info__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.country-data__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
